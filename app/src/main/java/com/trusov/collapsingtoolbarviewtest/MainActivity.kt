@@ -34,5 +34,11 @@ class MainActivity : AppCompatActivity() {
             submitList(list)
         }
 
+        val rvTags = findViewById<RecyclerView>(R.id.rv_tags)
+        rvTags.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvTags.adapter = TagRvAdapter().apply {
+            submitList(list)
+        }
+
     }
 }
