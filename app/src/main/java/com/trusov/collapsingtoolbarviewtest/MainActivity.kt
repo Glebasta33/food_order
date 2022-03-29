@@ -11,9 +11,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        val collapsingToolbar = findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
         val rvSales = findViewById<RecyclerView>(R.id.rv_sales)
         rvSales.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val list = listOf<Item>(
@@ -22,8 +19,18 @@ class MainActivity : AppCompatActivity() {
             Item(3),
             Item(4),
             Item(5),
+            Item(6),
+            Item(7),
+            Item(8),
+            Item(9),
+            Item(10),
         )
         rvSales.adapter = RvAdapter().apply {
+            submitList(list)
+        }
+
+        val rvFoods = findViewById<RecyclerView>(R.id.rv_foods)
+        rvFoods.adapter = FoodRvAdapter().apply {
             submitList(list)
         }
 

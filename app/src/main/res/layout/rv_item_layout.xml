@@ -13,8 +13,8 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="148dp"
-            android:layout_height="60dp"
+            android:layout_width="198dp"
+            android:layout_height="96dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
