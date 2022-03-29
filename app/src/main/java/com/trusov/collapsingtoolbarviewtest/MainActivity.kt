@@ -2,6 +2,12 @@ package com.trusov.collapsingtoolbarviewtest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.trusov.collapsingtoolbarviewtest.fragment.CartFragment
@@ -12,7 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        val spinner = findViewById<Spinner>(R.id.spinner_cities)
+        val arrayAdapter = ArrayAdapter(this, R.layout.spinner_item, listOf("Москва", "Санкт-Петербург", "Нижний Новгород", "Казань", "Екатерингбург"))
+        spinner.adapter = arrayAdapter
 
         val menuFragment = MenuFragment()
         val profileFragment = ProfileFragment()
