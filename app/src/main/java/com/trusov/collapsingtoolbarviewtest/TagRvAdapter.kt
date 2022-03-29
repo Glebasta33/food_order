@@ -20,6 +20,6 @@ class TagRvAdapter : ListAdapter<Item, TagRvAdapter.ItemViewHolder>(ItemDiffCall
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = currentList[position]
-        holder.id.text = item.id.toString()
+        holder.id.text = "Пицца-${item.id.toString()}"
     }
 }

@@ -10,16 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 class RvAdapter : ListAdapter<Item, RvAdapter.ItemViewHolder>(ItemDiffCallback()) {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val id = view.findViewById<TextView>(R.id.tv_id)
+        val image = view.findViewById<TextView>(R.id.iv_food_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_layout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.sale_rv_item_layout, parent, false)
         return ItemViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = currentList[position]
-        holder.id.text = item.id.toString()
     }
 }

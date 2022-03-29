@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 class ContentScrollingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_scrolling)
+        setContentView(R.layout.food_rv_wrapper_layout)
         val rvFoods = findViewById<RecyclerView>(R.id.rv_foods)
         val list = listOf<Item>(
             Item(1),

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class FoodRvAdapter : ListAdapter<Item, FoodRvAdapter.ItemViewHolder>(ItemDiffCallback()) {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val id = view.findViewById<TextView>(R.id.iv_food_item_id)
+        val id = view.findViewById<TextView>(R.id.iv_food_title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

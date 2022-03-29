@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,17 +8,55 @@
     android:layout_marginVertical="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="48dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:id="@+id/iv_food_image"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingEnd="22dp"/>
 
         <TextView
-            android:id="@+id/iv_food_item_id"
+            android:id="@+id/iv_food_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="idsdfsdfsdfsdf"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Ветчина и грибы"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/iv_food_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_food_image" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус Ветчина, Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соусшампиньоны, увеличинная порция моцареллы, томатный соус"
+            android:textColor="#ccc"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_food_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_food_image"
+            app:layout_constraintTop_toBottomOf="@id/iv_food_title"
+            android:ellipsize="end"
+            android:maxLines="4" />
+
+        <TextView
+            android:id="@+id/tv_food_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="от 345 р"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="18dp"
+            android:background="@drawable/textview_border"
+            android:textColor="@color/pink"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
