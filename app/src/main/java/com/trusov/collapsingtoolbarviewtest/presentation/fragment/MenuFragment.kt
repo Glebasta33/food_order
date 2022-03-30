@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.trusov.collapsingtoolbarviewtest.*
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
-import com.trusov.collapsingtoolbarviewtest.presentation.adapter.FoodRvAdapter
+import com.trusov.collapsingtoolbarviewtest.presentation.adapter.FoodItemAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.adapter.RvAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.adapter.CategoryAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.MenuViewModel
@@ -50,15 +50,16 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             submitList(list)
         }
 
-        viewModel.getListOfFoodItems()
-        val rvFoods = view.findViewById<RecyclerView>(R.id.rv_foods)
+        val rvFoodItems = view.findViewById<RecyclerView>(R.id.rv_foods)
         viewModel.listOfFoodItems.observe(viewLifecycleOwner) {
-            rvFoods.adapter = FoodRvAdapter().apply {
+            rvFoodItems.adapter = FoodItemAdapter().apply {
                 submitList(it)
+                onFoodItemLongClickListener = {
+                    viewModel.orderItem(it)
+                }
             }
         }
 
-        viewModel.getListOfCategories()
         val rvCategories = view.findViewById<RecyclerView>(R.id.rv_tags)
         rvCategories.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         viewModel.listOfCategories.observe(viewLifecycleOwner) {

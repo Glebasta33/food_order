@@ -1,5 +1,6 @@
 package com.trusov.collapsingtoolbarviewtest.data.remote.source
 
+import android.util.Log
 import com.trusov.collapsingtoolbarviewtest.data.remote.mapper.ShopMapper
 import com.trusov.collapsingtoolbarviewtest.data.remote.retrofit.ApiService
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
@@ -30,7 +31,7 @@ class RemoteDataSourceImpl @Inject constructor(
         return apiService.getListOfCategories().map { mapper.mapDtoToCategory(it) }
     }
 
-    override suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+    override fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
         val newFoodItems = list.filter { it.categoryId == category.id }
         if (filteredList == null) {
             filteredList = newFoodItems.toMutableList()
@@ -48,9 +49,32 @@ class RemoteDataSourceImpl @Inject constructor(
         return filteredList ?: newFoodItems.toMutableList()
     }
 
+    override fun orderFoodItem(item: FoodItem) {
+        item.isOrdered = !item.isOrdered
+        if (orderedList == null) {
+            orderedList = mutableListOf(item)
+        } else {
+            if (item.isOrdered){
+                orderedList?.add(item)
+            } else {
+                orderedList?.remove(item)
+            }
+        }
+        val listOfTitles = mutableListOf<String>()
+        for (i in orderedList!!) {
+            listOfTitles.add(i.title)
+        }
+        Log.d("OrderingTest", listOfTitles.toString())
+    }
+
+    override fun getListOfOrderedFoodItems(): List<FoodItem> {
+        return orderedList?.toMutableList() ?: listOf()
+    }
+
     companion object {
         private lateinit var list: List<FoodItem>
         private var filteredList: MutableList<FoodItem>? = null
+        private var orderedList: MutableList<FoodItem>? = null
     }
 
 }

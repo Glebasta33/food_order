@@ -32,7 +32,7 @@ class CategoryAdapter : ListAdapter<Category, CategoryAdapter.ItemViewHolder>(Ca
         val category = currentList[position]
         val title = category.title.split(" ")[0].capitalize()
         holder.title.text = title
-        holder.title.setOnClickListener {
+        holder.itemView.setOnClickListener {
             onCategoryItemClickListener?.invoke(category)
             notifyItemChanged(position)
         }

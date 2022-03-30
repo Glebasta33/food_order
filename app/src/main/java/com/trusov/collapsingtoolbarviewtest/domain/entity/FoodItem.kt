@@ -5,5 +5,6 @@ data class FoodItem(
     val title: String,
     val description: String,
     val imageUrl: String,
-    val categoryId: Int
+    val categoryId: Int,
+    var isOrdered: Boolean = false
 )

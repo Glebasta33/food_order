@@ -22,7 +22,15 @@ class ShopRepositoryImpl @Inject constructor(
         return remoteDataSource.getListOfCategories()
     }
 
-    override suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+    override fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
         return remoteDataSource.filterListOfFoodItemsByCategory(category)
+    }
+
+    override fun orderFoodItem(item: FoodItem) {
+        remoteDataSource.orderFoodItem(item)
+    }
+
+    override fun getListOfOrderedFoodItems(): List<FoodItem> {
+        return remoteDataSource.getListOfOrderedFoodItems()
     }
 }

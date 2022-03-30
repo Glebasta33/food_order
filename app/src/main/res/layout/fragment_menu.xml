@@ -50,6 +50,6 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/food_rv_item_layout" />
+        tools:listitem="@layout/food_not_ordered_rv_item_layout" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
