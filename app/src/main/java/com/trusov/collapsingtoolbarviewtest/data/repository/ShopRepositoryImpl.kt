@@ -2,6 +2,7 @@ package com.trusov.collapsingtoolbarviewtest.data.repository
 
 import androidx.lifecycle.LiveData
 import com.trusov.collapsingtoolbarviewtest.data.remote.source.RemoteDataSource
+import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.domain.repository.ShopRepository
 import javax.inject.Inject
@@ -15,5 +16,13 @@ class ShopRepositoryImpl @Inject constructor(
 
     override suspend fun getFoodItem(id: Int): FoodItem {
         return remoteDataSource.getFoodItem(id)
+    }
+
+    override suspend fun getListOfCategories(): List<Category> {
+        return remoteDataSource.getListOfCategories()
+    }
+
+    override suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+        return remoteDataSource.filterListOfFoodItemsByCategory(category)
     }
 }

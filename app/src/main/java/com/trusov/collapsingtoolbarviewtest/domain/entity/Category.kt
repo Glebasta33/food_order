@@ -1,9 +1,7 @@
 package com.trusov.collapsingtoolbarviewtest.domain.entity
 
-data class FoodItem(
+data class Category(
     val id: Int,
     val title: String,
-    val description: String,
-    val imageUrl: String,
-    val categoryId: Int
+    var isActivated: Boolean
 )

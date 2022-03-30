@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.R
 
-class RvAdapter : ListAdapter<FoodItem, RvAdapter.ItemViewHolder>(ItemDiffCallback()) {
+class RvAdapter : ListAdapter<FoodItem, RvAdapter.ItemViewHolder>(FoodItemDiffCallback()) {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image = view.findViewById<TextView>(R.id.iv_food_image)

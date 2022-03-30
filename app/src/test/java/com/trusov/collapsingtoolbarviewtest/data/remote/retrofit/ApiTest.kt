@@ -46,6 +46,15 @@ class ApiTest {
         }
     }
 
+    @Test
+    fun firstItemOfListOfFoodByCategoryEqualsExpectedValue() {
+        coroutineScope.launch {
+            val expectedTitle = "id labore ex et quam laborum"
+            val resultTitle = service.getListOfFoodsByCategory(1)[0].title
+            assertEquals(resultTitle, expectedTitle)
+        }
+    }
+
     @After
     fun close() {
         coroutineScope.cancel()

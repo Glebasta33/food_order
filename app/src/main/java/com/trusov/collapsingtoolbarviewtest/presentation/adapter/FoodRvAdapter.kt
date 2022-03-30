@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.R
 
-class FoodRvAdapter : ListAdapter<FoodItem, FoodRvAdapter.ItemViewHolder>(ItemDiffCallback()) {
+class FoodRvAdapter : ListAdapter<FoodItem, FoodRvAdapter.ItemViewHolder>(FoodItemDiffCallback()) {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title = view.findViewById<TextView>(R.id.tv_food_title)

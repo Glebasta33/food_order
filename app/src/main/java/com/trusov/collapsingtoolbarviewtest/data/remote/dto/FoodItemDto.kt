@@ -7,10 +7,13 @@ data class FoodItemDto(
     @SerializedName("body")
     @Expose
     val description: String,
-    @SerializedName("postId")
+    @SerializedName("id")
     @Expose
     val id: Int,
     @SerializedName("name")
     @Expose
     val title: String,
+    @SerializedName("postId")
+    @Expose
+    val categoryId: Int
 )
