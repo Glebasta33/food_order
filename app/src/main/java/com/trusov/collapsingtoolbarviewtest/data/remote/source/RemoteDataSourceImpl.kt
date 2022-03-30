@@ -1,6 +1,7 @@
 package com.trusov.collapsingtoolbarviewtest.data.remote.source
 
 import android.util.Log
+import com.trusov.collapsingtoolbarviewtest.data.remote.dto.ImageDto
 import com.trusov.collapsingtoolbarviewtest.data.remote.mapper.ShopMapper
 import com.trusov.collapsingtoolbarviewtest.data.remote.retrofit.ApiService
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
@@ -24,7 +25,9 @@ class RemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getFoodItem(id: Int): FoodItem {
-        TODO("Not yet implemented")
+        val itemDto = apiService.getItemById(id)
+        val imageDto = apiService.getImageById(id)
+        return mapper.mapDtoToFoodItem(itemDto, imageDto.bigImageUrl)
     }
 
     override suspend fun getListOfCategories(): List<Category> {

@@ -24,10 +24,14 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[MenuViewModel::class.java]
     }
+    private lateinit var navigationHelper: NavigationHelper
 
     override fun onAttach(context: Context) {
         (context.applicationContext as App).component.inject(this)
         super.onAttach(context)
+        if (context is NavigationHelper) {
+            navigationHelper = context
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,15 +40,15 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         rvSales.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val list = listOf<FoodItem>(
             FoodItem(1, "", "", "", 0),
-            FoodItem(2,"", "", "", 0),
-            FoodItem(3,"", "", "", 0),
-            FoodItem(4,"", "", "", 0),
-            FoodItem(5,"", "", "", 0),
-            FoodItem(6,"", "", "", 0),
-            FoodItem(7,"", "", "", 0),
-            FoodItem(8,"", "", "", 0),
-            FoodItem(9,"", "", "", 0),
-            FoodItem(10,"", "", "", 0)
+            FoodItem(2, "", "", "", 0),
+            FoodItem(3, "", "", "", 0),
+            FoodItem(4, "", "", "", 0),
+            FoodItem(5, "", "", "", 0),
+            FoodItem(6, "", "", "", 0),
+            FoodItem(7, "", "", "", 0),
+            FoodItem(8, "", "", "", 0),
+            FoodItem(9, "", "", "", 0),
+            FoodItem(10, "", "", "", 0)
         )
         rvSales.adapter = RvAdapter().apply {
             submitList(list)
@@ -57,11 +61,15 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 onFoodItemLongClickListener = {
                     viewModel.orderItem(it)
                 }
+                onFoodItemClickListener = {
+                    navigationHelper.launchFoodItemDetailedFragment(it)
+                }
             }
         }
 
         val rvCategories = view.findViewById<RecyclerView>(R.id.rv_tags)
-        rvCategories.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        rvCategories.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         viewModel.listOfCategories.observe(viewLifecycleOwner) {
             rvCategories.adapter = CategoryAdapter().apply {
                 submitList(it)
@@ -71,7 +79,10 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 }
             }
         }
-
-
     }
+
+    interface NavigationHelper {
+        fun launchFoodItemDetailedFragment(item: FoodItem)
+    }
+
 }

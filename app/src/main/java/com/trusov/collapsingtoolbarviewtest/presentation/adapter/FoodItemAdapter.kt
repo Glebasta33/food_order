@@ -14,6 +14,7 @@ import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 class FoodItemAdapter : ListAdapter<FoodItem, FoodItemAdapter.ItemViewHolder>(FoodItemDiffCallback()) {
 
     var onFoodItemLongClickListener: ((FoodItem) -> Unit)? = null
+    var onFoodItemClickListener: ((FoodItem) -> Unit)? = null
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title = view.findViewById<TextView>(R.id.tv_food_title)
@@ -44,6 +45,9 @@ class FoodItemAdapter : ListAdapter<FoodItem, FoodItemAdapter.ItemViewHolder>(Fo
             onFoodItemLongClickListener?.invoke(foodItem)
             notifyItemChanged(position)
             true
+        }
+        holder.itemView.setOnClickListener {
+            onFoodItemClickListener?.invoke(foodItem)
         }
     }
 

@@ -13,6 +13,11 @@ interface ApiService {
         @Path("id") id: Int
     ): ImageDto
 
+    @GET("comments/{id}")
+    suspend fun getItemById(
+        @Path("id") id: Int
+    ): FoodItemDto
+
     @GET("comments")
     suspend fun getListOfFoodItems(): List<FoodItemDto>
 
