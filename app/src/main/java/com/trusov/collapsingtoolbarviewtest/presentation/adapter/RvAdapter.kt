@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest
+package com.trusov.collapsingtoolbarviewtest.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
+import com.trusov.collapsingtoolbarviewtest.R
 
-class RvAdapter : ListAdapter<Item, RvAdapter.ItemViewHolder>(ItemDiffCallback()) {
+class RvAdapter : ListAdapter<FoodItem, RvAdapter.ItemViewHolder>(ItemDiffCallback()) {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image = view.findViewById<TextView>(R.id.iv_food_image)

@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest.fragment
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment
 
 import androidx.fragment.app.Fragment
 import com.trusov.collapsingtoolbarviewtest.R
