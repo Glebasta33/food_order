@@ -5,7 +5,7 @@ import com.trusov.collapsingtoolbarviewtest.domain.repository.ShopRepository
 import javax.inject.Inject
 
 class OrderFoodItemUseCase @Inject constructor(private val repository: ShopRepository) {
-    operator fun invoke(item: FoodItem) {
+    suspend operator fun invoke(item: FoodItem) {
         repository.orderFoodItem(item)
     }
 }

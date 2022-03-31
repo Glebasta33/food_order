@@ -27,8 +27,13 @@ class ShopRepositoryImpl @Inject constructor(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override suspend fun getFoodItem(id: Int): FoodItem {
-        return remoteDataSource.getFoodItem(id)
+        return if (networkChecker.isOnline()) {
+            remoteDataSource.getFoodItem(id)
+        } else {
+            localDataSource.getFoodItem(id)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -53,11 +58,21 @@ class ShopRepositoryImpl @Inject constructor(
 
     }
 
-    override fun orderFoodItem(item: FoodItem) {
-        remoteDataSource.orderFoodItem(item)
+    @RequiresApi(Build.VERSION_CODES.M)
+    override suspend fun orderFoodItem(item: FoodItem) {
+        return if (networkChecker.isOnline()) {
+            remoteDataSource.orderFoodItem(item)
+        } else {
+            localDataSource.orderFoodItem(item)
+        }
     }
 
-    override fun getListOfOrderedFoodItems(): List<FoodItem> {
-        return remoteDataSource.getListOfOrderedFoodItems()
+    @RequiresApi(Build.VERSION_CODES.M)
+    override suspend fun getListOfOrderedFoodItems(): List<FoodItem> {
+        return if (networkChecker.isOnline()) {
+            remoteDataSource.getListOfOrderedFoodItems()
+        } else {
+            localDataSource.getListOfOrderedFoodItems()
+        }
     }
 }

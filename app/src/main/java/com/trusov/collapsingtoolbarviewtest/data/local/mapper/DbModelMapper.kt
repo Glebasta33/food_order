@@ -9,14 +9,6 @@ import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import javax.inject.Inject
 
 class DbModelMapper @Inject constructor() {
-    fun mapFoodItemDtoToDbModel(dto: FoodItemDto, url: String) = FoodItemDbModel(
-        id = dto.id,
-        title = dto.title,
-        description = dto.description,
-        imageUrl = url,
-        categoryId = dto.categoryId,
-        isOrdered = false
-    )
 
     fun mapFoodItemDbModelToEntity(dbModel: FoodItemDbModel) = FoodItem(
         id = dbModel.id,
@@ -34,12 +26,6 @@ class DbModelMapper @Inject constructor() {
         imageUrl = entity.imageUrl,
         categoryId = entity.categoryId,
         isOrdered = entity.isOrdered
-    )
-
-    fun mapCategoryDtoToDbModel(dto: CategoryDto) = CategoryDbModel(
-        id = dto.id,
-        title = dto.title,
-        isActivated = false
     )
 
     fun mapCategoryDbModelToEntity(dbModel: CategoryDbModel) = Category(

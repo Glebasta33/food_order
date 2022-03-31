@@ -33,6 +33,9 @@ class RemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+        if (list == null || list.isEmpty()) {
+            list = getListOfFoodItems()
+        }
         val newFoodItems = list.filter { it.categoryId == category.id }
         if (filteredList == null) {
             filteredList = newFoodItems.toMutableList()
@@ -50,7 +53,7 @@ class RemoteDataSourceImpl @Inject constructor(
         return filteredList ?: newFoodItems.toMutableList()
     }
 
-    override fun orderFoodItem(item: FoodItem) {
+    override suspend fun orderFoodItem(item: FoodItem) {
         item.isOrdered = !item.isOrdered
         if (orderedList == null) {
             orderedList = mutableListOf(item)

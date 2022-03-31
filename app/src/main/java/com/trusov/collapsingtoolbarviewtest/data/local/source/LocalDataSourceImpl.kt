@@ -1,5 +1,6 @@
 package com.trusov.collapsingtoolbarviewtest.data.local.source
 
+import android.util.Log
 import com.trusov.collapsingtoolbarviewtest.data.local.database.ShopDao
 import com.trusov.collapsingtoolbarviewtest.data.local.mapper.DbModelMapper
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
@@ -32,10 +33,7 @@ class LocalDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getFoodItem(id: Int): FoodItem {
-//        val itemDto = apiService.getItemById(id)
-//        val imageDto = apiService.getImageById(id)
-//        return mapper.mapDtoToFoodItem(itemDto, imageDto.bigImageUrl)
-        TODO("Not yet implemented")
+        return mapper.mapFoodItemDbModelToEntity(shopDao.getFoodItemById(id))
     }
 
     override suspend fun getListOfCategories(): List<Category> {
@@ -65,25 +63,13 @@ class LocalDataSourceImpl @Inject constructor(
 
     }
 
-    override fun orderFoodItem(item: FoodItem) {
+    override suspend fun orderFoodItem(item: FoodItem) {
         item.isOrdered = !item.isOrdered
-        if (orderedList == null) {
-            orderedList = mutableListOf(item)
-        } else {
-            if (item.isOrdered) {
-                orderedList?.add(item)
-            } else {
-                orderedList?.remove(item)
-            }
-        }
-        val listOfTitles = mutableListOf<String>()
-        for (i in orderedList!!) {
-            listOfTitles.add(i.title)
-        }
+        shopDao.orderFoodItem(mapper.mapFoodItemEntityToDbModel(item))
     }
 
-    override fun getListOfOrderedFoodItems(): List<FoodItem> {
-        return orderedList?.toMutableList() ?: listOf()
+    override suspend fun getListOfOrderedFoodItems(): List<FoodItem> {
+        return shopDao.getListOfOrderedFoodItems().map { mapper.mapFoodItemDbModelToEntity(it) }
     }
 
     companion object {

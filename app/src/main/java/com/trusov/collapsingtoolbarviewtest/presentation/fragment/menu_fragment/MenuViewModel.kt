@@ -42,6 +42,8 @@ class MenuViewModel @Inject constructor(
     }
 
     fun orderItem(item: FoodItem) {
-        orderFoodItemUseCase(item)
+        CoroutineScope(Dispatchers.IO).launch {
+            orderFoodItemUseCase(item)
+        }
     }
 }
