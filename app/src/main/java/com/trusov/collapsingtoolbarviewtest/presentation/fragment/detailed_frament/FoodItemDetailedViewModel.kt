@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.domain.use_case.GetFoodItemUseCase
 import com.trusov.collapsingtoolbarviewtest.domain.use_case.OrderFoodItemUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,7 +27,9 @@ class FoodItemDetailedViewModel @Inject constructor(
     }
 
     fun orderItem(item: FoodItem) {
-        orderFoodItemUseCase(item)
+        CoroutineScope(Dispatchers.IO).launch {
+            orderFoodItemUseCase(item)
+        }
         getItem(item.id)
     }
 }

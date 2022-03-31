@@ -1,13 +1,13 @@
 package com.trusov.collapsingtoolbarviewtest.data.remote.source
 
-import com.trusov.collapsingtoolbarviewtest.data.remote.mapper.ShopMapper
+import com.trusov.collapsingtoolbarviewtest.data.remote.mapper.DtoMapper
 import com.trusov.collapsingtoolbarviewtest.data.remote.retrofit.ApiService
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(
-    private val mapper: ShopMapper,
+    private val mapper: DtoMapper,
     private val apiService: ApiService
 ) : RemoteDataSource {
 
@@ -32,7 +32,10 @@ class RemoteDataSourceImpl @Inject constructor(
         return apiService.getListOfCategories().map { mapper.mapDtoToCategory(it) }
     }
 
-    override fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+    override suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+        if (list == null || list.isEmpty()) {
+            list = getListOfFoodItems()
+        }
         val newFoodItems = list.filter { it.categoryId == category.id }
         if (filteredList == null) {
             filteredList = newFoodItems.toMutableList()
@@ -50,7 +53,7 @@ class RemoteDataSourceImpl @Inject constructor(
         return filteredList ?: newFoodItems.toMutableList()
     }
 
-    override fun orderFoodItem(item: FoodItem) {
+    override suspend fun orderFoodItem(item: FoodItem) {
         item.isOrdered = !item.isOrdered
         if (orderedList == null) {
             orderedList = mutableListOf(item)

@@ -7,7 +7,7 @@ interface RemoteDataSource {
     suspend fun getListOfFoodItems(): List<FoodItem>
     suspend fun getFoodItem(id: Int): FoodItem
     suspend fun getListOfCategories(): List<Category>
-    fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem>
-    fun orderFoodItem(item: FoodItem)
+    suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem>
+    suspend fun orderFoodItem(item: FoodItem)
     fun getListOfOrderedFoodItems(): List<FoodItem>
 }

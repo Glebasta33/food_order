@@ -8,7 +8,7 @@ import javax.inject.Inject
 class FilterListOfFoodItemsByCategoriesUseCase @Inject constructor(
     private val repository: ShopRepository
 ) {
-    operator fun invoke(category: Category): List<FoodItem> {
+    suspend operator fun invoke(category: Category): List<FoodItem> {
         return repository.filterListOfFoodItemsByCategory(category)
     }
 }

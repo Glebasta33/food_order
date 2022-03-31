@@ -2,6 +2,7 @@ package com.trusov.collapsingtoolbarviewtest.presentation.fragment.detailed_fram
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.trusov.collapsingtoolbarviewtest.App
 import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.databinding.FragmentFoodItemDetailedBinding
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.ViewModelFactory
+import com.trusov.collapsingtoolbarviewtest.util.NetworkChecker
+import java.lang.Exception
 import javax.inject.Inject
 
 class FoodItemDetailedFragment : Fragment() {
@@ -54,22 +58,34 @@ class FoodItemDetailedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val button = view.findViewById<TextView>(R.id.tv_order_button)
         viewModel.getItem(item.id)
         viewModel.item.observe(viewLifecycleOwner) { loadedItem ->
             Picasso.get().load(loadedItem.imageUrl)
                 .placeholder(R.drawable.ic_launcher_background)
-                .into(view.findViewById<ImageView>(R.id.iv_food_big_image))
-            view.findViewById<TextView>(R.id.tv_food_item_title).text = item.title.uppercase()
-            view.findViewById<TextView>(R.id.tv_food_item_description).text = item.description
+                .into(binding.ivFoodBigImage, object : Callback {
+                    override fun onSuccess() {
+                    }
+
+                    override fun onError(e: Exception?) {
+                        Picasso.get().load(loadedItem.imageUrl)
+                            .placeholder(R.drawable.ic_launcher_background)
+                            .error(R.drawable.ic_launcher_background)
+                            .into(binding.ivFoodBigImage)
+                        Log.d("Picasso", "Picasso can`t fetch big image")
+                    }
+
+                })
+            binding.tvFoodItemTitle.text = item.title.uppercase()
+            binding.tvFoodItemDescription.text = item.description
             if (item.isOrdered) {
-                button.text = "Удалить из корзины"
+                binding.tvOrderButton.text = "Удалить из корзины"
             } else {
-                button.text = "Добавить в корзину"
+                binding.tvOrderButton.text = "Добавить в корзину"
             }
-            button.setOnClickListener {
-                viewModel.orderItem(item)
-            }
+        }
+
+        binding.tvOrderButton.setOnClickListener {
+            viewModel.orderItem(item)
         }
     }
 

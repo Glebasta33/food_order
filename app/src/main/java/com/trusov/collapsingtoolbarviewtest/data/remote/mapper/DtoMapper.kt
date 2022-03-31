@@ -6,7 +6,7 @@ import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import javax.inject.Inject
 
-class ShopMapper @Inject constructor() {
+class DtoMapper @Inject constructor() {
     fun mapDtoToFoodItem(dto: FoodItemDto, url: String) = FoodItem(
         id = dto.id,
         title = dto.title,
