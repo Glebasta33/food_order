@@ -1,8 +1,8 @@
 package com.trusov.collapsingtoolbarviewtest.presentation.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.databinding.ActivityMainBinding

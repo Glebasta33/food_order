@@ -14,6 +14,7 @@ class ShopMapper @Inject constructor() {
         imageUrl = url,
         categoryId = dto.categoryId
     )
+
     fun mapDtoToCategory(dto: CategoryDto) = Category(
         id = dto.id,
         title = dto.title,

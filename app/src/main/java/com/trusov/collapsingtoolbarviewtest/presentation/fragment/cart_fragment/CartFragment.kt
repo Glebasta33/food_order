@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.trusov.collapsingtoolbarviewtest.App
 import com.trusov.collapsingtoolbarviewtest.databinding.FragmentCartBinding
-import com.trusov.collapsingtoolbarviewtest.presentation.util.NavigationController
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.FoodItemAdapter
+import com.trusov.collapsingtoolbarviewtest.presentation.util.NavigationController
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
 

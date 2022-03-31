@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.trusov.collapsingtoolbarviewtest.*
+import com.trusov.collapsingtoolbarviewtest.App
+import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.databinding.FragmentMenuBinding
-import com.trusov.collapsingtoolbarviewtest.presentation.util.NavigationController
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.CategoryAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.FoodItemAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.SaleAdapter
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.CategoryAdapter
+import com.trusov.collapsingtoolbarviewtest.presentation.util.NavigationController
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.ViewModelFactory
-import java.lang.RuntimeException
 import javax.inject.Inject
 
 class MenuFragment : Fragment() {

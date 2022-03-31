@@ -10,12 +10,14 @@ import com.trusov.collapsingtoolbarviewtest.domain.entity.Sale
 
 class SaleAdapter : ListAdapter<Sale, SaleAdapter.ItemViewHolder>(SaleDiffCallback()) {
 
-    private val list = mutableListOf<Sale>()
     init {
-        for (id in 1..10) {
-            list.add(Sale(id))
-        }
-        submitList(list)
+        submitList(
+            mutableListOf<Sale>().apply {
+                for (id in 1..10) {
+                    add(Sale(id))
+                }
+            }
+        )
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
