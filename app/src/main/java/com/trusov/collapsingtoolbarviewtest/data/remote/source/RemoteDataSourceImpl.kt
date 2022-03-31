@@ -32,7 +32,7 @@ class RemoteDataSourceImpl @Inject constructor(
         return apiService.getListOfCategories().map { mapper.mapDtoToCategory(it) }
     }
 
-    override fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+    override suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
         val newFoodItems = list.filter { it.categoryId == category.id }
         if (filteredList == null) {
             filteredList = newFoodItems.toMutableList()

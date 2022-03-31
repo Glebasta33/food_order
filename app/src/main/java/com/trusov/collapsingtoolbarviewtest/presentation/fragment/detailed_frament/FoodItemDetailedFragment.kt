@@ -17,6 +17,7 @@ import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.databinding.FragmentFoodItemDetailedBinding
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.ViewModelFactory
+import com.trusov.collapsingtoolbarviewtest.util.NetworkChecker
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -57,7 +58,6 @@ class FoodItemDetailedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val button = view.findViewById<TextView>(R.id.tv_order_button)
         viewModel.getItem(item.id)
         viewModel.item.observe(viewLifecycleOwner) { loadedItem ->
             Picasso.get().load(loadedItem.imageUrl)
@@ -75,16 +75,17 @@ class FoodItemDetailedFragment : Fragment() {
                     }
 
                 })
-            view.findViewById<TextView>(R.id.tv_food_item_title).text = item.title.uppercase()
-            view.findViewById<TextView>(R.id.tv_food_item_description).text = item.description
+            binding.tvFoodItemTitle.text = item.title.uppercase()
+            binding.tvFoodItemDescription.text = item.description
             if (item.isOrdered) {
-                button.text = "Удалить из корзины"
+                binding.tvOrderButton.text = "Удалить из корзины"
             } else {
-                button.text = "Добавить в корзину"
+                binding.tvOrderButton.text = "Добавить в корзину"
             }
-            button.setOnClickListener {
-                viewModel.orderItem(item)
-            }
+        }
+
+        binding.tvOrderButton.setOnClickListener {
+            viewModel.orderItem(item)
         }
     }
 

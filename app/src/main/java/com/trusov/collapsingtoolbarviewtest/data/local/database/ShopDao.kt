@@ -13,10 +13,13 @@ interface ShopDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertListOfFoodItems(list: List<FoodItemDbModel>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateCategoryStatus(categoryDbModel: CategoryDbModel)
+
     @Query("SELECT * FROM food_item ORDER BY id")
     suspend fun getListOfFoodItems(): List<FoodItemDbModel>
 
-    @Query("SELECT * FROM food_item ORDER BY categoryId = :categoryId")
+    @Query("SELECT * FROM food_item WHERE categoryId = :categoryId")
     suspend fun filterListOfFoodItems(categoryId: Int): List<FoodItemDbModel>
 
     @Query("SELECT * FROM food_item WHERE id = :itemId LIMIT 1")

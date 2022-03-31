@@ -10,6 +10,8 @@ import com.trusov.collapsingtoolbarviewtest.domain.use_case.FilterListOfFoodItem
 import com.trusov.collapsingtoolbarviewtest.domain.use_case.GetListOfCategoriesUseCase
 import com.trusov.collapsingtoolbarviewtest.domain.use_case.GetListOfFoodItemsUseCase
 import com.trusov.collapsingtoolbarviewtest.domain.use_case.OrderFoodItemUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,7 +36,9 @@ class MenuViewModel @Inject constructor(
     }
 
     fun filterByCategory(category: Category) {
-        _listOfFoodItems.postValue(filterListOfFoodItemsByCategoriesUseCase(category))
+        CoroutineScope(Dispatchers.IO).launch {
+            _listOfFoodItems.postValue(filterListOfFoodItemsByCategoriesUseCase(category))
+        }
     }
 
     fun orderItem(item: FoodItem) {

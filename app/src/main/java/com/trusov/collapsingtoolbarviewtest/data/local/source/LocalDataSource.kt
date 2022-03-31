@@ -1,6 +1,5 @@
 package com.trusov.collapsingtoolbarviewtest.data.local.source
 
-import com.trusov.collapsingtoolbarviewtest.data.remote.dto.FoodItemDto
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 
@@ -10,7 +9,7 @@ interface LocalDataSource {
     suspend fun getListOfFoodItems(): List<FoodItem>
     suspend fun getFoodItem(id: Int): FoodItem
     suspend fun getListOfCategories(): List<Category>
-    fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem>
+    suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem>
     fun orderFoodItem(item: FoodItem)
     fun getListOfOrderedFoodItems(): List<FoodItem>
 }

@@ -2,7 +2,6 @@ package com.trusov.collapsingtoolbarviewtest.data.local.source
 
 import com.trusov.collapsingtoolbarviewtest.data.local.database.ShopDao
 import com.trusov.collapsingtoolbarviewtest.data.local.mapper.DbModelMapper
-import com.trusov.collapsingtoolbarviewtest.data.remote.retrofit.ApiService
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import javax.inject.Inject
@@ -13,7 +12,7 @@ class LocalDataSourceImpl @Inject constructor(
 ) : LocalDataSource {
 
     override suspend fun insertListOfFoodItems(list: List<FoodItem>) {
-        shopDao.insertListOfFoodItems(list.map{ mapper.mapFoodItemEntityToDbModel(it) })
+        shopDao.insertListOfFoodItems(list.map { mapper.mapFoodItemEntityToDbModel(it) })
     }
 
     override suspend fun insertListOfCategories(list: List<Category>) {
@@ -22,6 +21,13 @@ class LocalDataSourceImpl @Inject constructor(
 
     override suspend fun getListOfFoodItems(): List<FoodItem> {
         val foodItems = shopDao.getListOfFoodItems()
+        val activatedCategories = shopDao.getListOfCategories().filter { it.isActivated }
+        if (activatedCategories.isNotEmpty()) {
+            for (category in activatedCategories) {
+                filterListOfFoodItemsByCategory(mapper.mapCategoryDbModelToEntity(category))
+            }
+            return filteredList?.toList() ?: foodItems.map { mapper.mapFoodItemDbModelToEntity(it) }
+        }
         return foodItems.map { mapper.mapFoodItemDbModelToEntity(it) }
     }
 
@@ -38,8 +44,10 @@ class LocalDataSourceImpl @Inject constructor(
     }
 
 
-    override fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
-        val newFoodItems = list.filter { it.categoryId == category.id }
+    override suspend fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
+        shopDao.updateCategoryStatus(mapper.mapCategoryEntityToDbModel(category))
+        val newFoodItems = shopDao.filterListOfFoodItems(category.id)
+            .map { mapper.mapFoodItemDbModelToEntity(it) }
         if (filteredList == null) {
             filteredList = newFoodItems.toMutableList()
         } else {
@@ -50,10 +58,11 @@ class LocalDataSourceImpl @Inject constructor(
             }
         }
         if (filteredList?.size == 0) {
-            return list
+            return getListOfFoodItems()
         }
         filteredList?.sortBy { it.id }
         return filteredList ?: newFoodItems.toMutableList()
+
     }
 
     override fun orderFoodItem(item: FoodItem) {
