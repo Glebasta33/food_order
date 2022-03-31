@@ -59,6 +59,7 @@ class FoodItemDetailedFragment : Fragment(R.layout.fragment_food_item_detailed) 
     }
 
     companion object {
+        const val NAME = "FoodItemDetailedFragment"
         private const val ITEM_RC = "item_rc"
 
         fun newInstance(item: FoodItem): FoodItemDetailedFragment {

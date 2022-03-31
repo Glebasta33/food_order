@@ -7,6 +7,7 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.trusov.collapsingtoolbarviewtest.R
+import com.trusov.collapsingtoolbarviewtest.databinding.ActivityMainBinding
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.CartFragment
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.FoodItemDetailedFragment
@@ -14,25 +15,25 @@ import com.trusov.collapsingtoolbarviewtest.presentation.fragment.MenuFragment
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.ProfileFragment
 
 class MainActivity : AppCompatActivity(), NavigationController {
+
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+        initSpinner()
+        initFragments()
+    }
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-
-        val spinner = findViewById<Spinner>(R.id.spinner_cities)
-        val arrayAdapter = ArrayAdapter(this,
-            R.layout.spinner_item, listOf("Москва", "Санкт-Петербург", "Нижний Новгород", "Казань", "Екатерингбург"))
-        spinner.adapter = arrayAdapter
-
+    private fun initFragments() {
         val menuFragment = MenuFragment()
         val profileFragment = ProfileFragment()
         val cartFragment = CartFragment()
-
         setCurrentFragment(menuFragment)
-
-        bottomNav.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.mi_menu -> setCurrentFragment(menuFragment)
                 R.id.mi_profile -> setCurrentFragment(profileFragment)
                 R.id.mi_cart -> setCurrentFragment(cartFragment)
@@ -48,9 +49,17 @@ class MainActivity : AppCompatActivity(), NavigationController {
         }
     }
 
+    private fun initSpinner() {
+        binding.spinnerCities.adapter = ArrayAdapter(
+            this,
+            R.layout.spinner_item,
+            listOf("Москва", "Санкт-Петербург", "Нижний Новгород", "Казань", "Екатерингбург")
+        )
+    }
+
     override fun launchFoodItemDetailedFragment(item: FoodItem) {
         supportFragmentManager.beginTransaction().apply {
-            addToBackStack("FoodItemDetailedFragment")
+            addToBackStack(FoodItemDetailedFragment.NAME)
             replace(R.id.fl_fragment_container, FoodItemDetailedFragment.newInstance(item))
             commit()
         }
