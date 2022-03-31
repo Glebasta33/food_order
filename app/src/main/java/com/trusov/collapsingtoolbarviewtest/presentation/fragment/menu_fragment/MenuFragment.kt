@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.fragment
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -11,17 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.trusov.collapsingtoolbarviewtest.*
 import com.trusov.collapsingtoolbarviewtest.databinding.FragmentMenuBinding
-import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
-import com.trusov.collapsingtoolbarviewtest.presentation.activity.NavigationController
-import com.trusov.collapsingtoolbarviewtest.presentation.adapter.FoodItemAdapter
-import com.trusov.collapsingtoolbarviewtest.presentation.adapter.SaleAdapter
-import com.trusov.collapsingtoolbarviewtest.presentation.adapter.CategoryAdapter
-import com.trusov.collapsingtoolbarviewtest.presentation.view_model.MenuViewModel
+import com.trusov.collapsingtoolbarviewtest.presentation.util.NavigationController
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.FoodItemAdapter
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.SaleAdapter
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter.CategoryAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.ViewModelFactory
 import java.lang.RuntimeException
 import javax.inject.Inject
 
-class MenuFragment : Fragment(R.layout.fragment_menu) {
+class MenuFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory

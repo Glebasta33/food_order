@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.adapter
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter
 
 import android.view.LayoutInflater
 import android.view.View

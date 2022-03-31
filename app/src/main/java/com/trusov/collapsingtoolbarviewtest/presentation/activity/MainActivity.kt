@@ -3,16 +3,15 @@ package com.trusov.collapsingtoolbarviewtest.presentation.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.databinding.ActivityMainBinding
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.CartFragment
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.FoodItemDetailedFragment
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.MenuFragment
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.ProfileFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.cart_fragment.CartFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.detailed_frament.FoodItemDetailedFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.MenuFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.profile_fragment.ProfileFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.util.NavigationController
 
 class MainActivity : AppCompatActivity(), NavigationController {
 

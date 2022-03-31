@@ -1,9 +1,9 @@
 package com.trusov.collapsingtoolbarviewtest.di
 
 import androidx.lifecycle.ViewModel
-import com.trusov.collapsingtoolbarviewtest.presentation.view_model.CartViewModel
-import com.trusov.collapsingtoolbarviewtest.presentation.view_model.FoodItemDetailedViewModel
-import com.trusov.collapsingtoolbarviewtest.presentation.view_model.MenuViewModel
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.cart_fragment.CartViewModel
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.detailed_frament.FoodItemDetailedViewModel
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.MenuViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

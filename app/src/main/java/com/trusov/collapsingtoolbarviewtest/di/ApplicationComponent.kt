@@ -2,9 +2,9 @@ package com.trusov.collapsingtoolbarviewtest.di
 
 import android.app.Application
 import com.trusov.collapsingtoolbarviewtest.presentation.activity.MainActivity
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.CartFragment
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.FoodItemDetailedFragment
-import com.trusov.collapsingtoolbarviewtest.presentation.fragment.MenuFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.cart_fragment.CartFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.detailed_frament.FoodItemDetailedFragment
+import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.MenuFragment
 import dagger.BindsInstance
 import dagger.Component
 

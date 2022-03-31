@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.view_model
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

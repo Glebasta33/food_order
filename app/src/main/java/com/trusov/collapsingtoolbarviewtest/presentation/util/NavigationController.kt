@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.activity
+package com.trusov.collapsingtoolbarviewtest.presentation.util
 
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 
