@@ -1,5 +1,6 @@
 package com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,9 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
+import java.lang.Exception
 
 class FoodItemAdapter :
     ListAdapter<FoodItem, FoodItemAdapter.ItemViewHolder>(FoodItemDiffCallback()) {
@@ -40,8 +44,22 @@ class FoodItemAdapter :
         holder.description.text = foodItem.description
         holder.price.text = "от ${foodItem.id} р."
         Picasso.get().load(foodItem.imageUrl)
+            .networkPolicy(NetworkPolicy.OFFLINE)
             .placeholder(R.drawable.ic_launcher_background)
-            .into(holder.image)
+            .into(holder.image, object : Callback {
+                override fun onSuccess() {
+                }
+
+                override fun onError(e: Exception?) {
+                    Picasso.get().load(foodItem.imageUrl)
+                        .networkPolicy(NetworkPolicy.OFFLINE)
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_background)
+                        .into(holder.image)
+                    Log.d("Picasso", "Picasso can`t fetch image")
+                }
+
+            })
         holder.itemView.setOnLongClickListener {
             onFoodItemLongClickListener?.invoke(foodItem)
             notifyItemChanged(position)

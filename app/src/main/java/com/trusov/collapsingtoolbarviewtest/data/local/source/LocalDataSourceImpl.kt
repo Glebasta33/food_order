@@ -1,36 +1,42 @@
-package com.trusov.collapsingtoolbarviewtest.data.remote.source
+package com.trusov.collapsingtoolbarviewtest.data.local.source
 
-import com.trusov.collapsingtoolbarviewtest.data.remote.mapper.DtoMapper
+import com.trusov.collapsingtoolbarviewtest.data.local.database.ShopDao
+import com.trusov.collapsingtoolbarviewtest.data.local.mapper.DbModelMapper
 import com.trusov.collapsingtoolbarviewtest.data.remote.retrofit.ApiService
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import javax.inject.Inject
 
-class RemoteDataSourceImpl @Inject constructor(
-    private val mapper: DtoMapper,
-    private val apiService: ApiService
-) : RemoteDataSource {
+class LocalDataSourceImpl @Inject constructor(
+    private val mapper: DbModelMapper,
+    private val shopDao: ShopDao
+) : LocalDataSource {
+
+    override suspend fun insertListOfFoodItems(list: List<FoodItem>) {
+        shopDao.insertListOfFoodItems(list.map{ mapper.mapFoodItemEntityToDbModel(it) })
+    }
+
+    override suspend fun insertListOfCategories(list: List<Category>) {
+        shopDao.insertListOfCategories(list.map { mapper.mapCategoryEntityToDbModel(it) })
+    }
 
     override suspend fun getListOfFoodItems(): List<FoodItem> {
-        val images = apiService.getListOfImages().take(500)
-        list = apiService.getListOfFoodItems().map {
-            mapper.mapDtoToFoodItem(
-                it,
-                images[it.id - 1].smallImageUrl
-            )
-        }
-        return list
+        val foodItems = shopDao.getListOfFoodItems()
+        return foodItems.map { mapper.mapFoodItemDbModelToEntity(it) }
     }
 
     override suspend fun getFoodItem(id: Int): FoodItem {
-        val itemDto = apiService.getItemById(id)
-        val imageDto = apiService.getImageById(id)
-        return mapper.mapDtoToFoodItem(itemDto, imageDto.bigImageUrl)
+//        val itemDto = apiService.getItemById(id)
+//        val imageDto = apiService.getImageById(id)
+//        return mapper.mapDtoToFoodItem(itemDto, imageDto.bigImageUrl)
+        TODO("Not yet implemented")
     }
 
     override suspend fun getListOfCategories(): List<Category> {
-        return apiService.getListOfCategories().map { mapper.mapDtoToCategory(it) }
+        val categories = shopDao.getListOfCategories()
+        return categories.map { mapper.mapCategoryDbModelToEntity(it) }
     }
+
 
     override fun filterListOfFoodItemsByCategory(category: Category): List<FoodItem> {
         val newFoodItems = list.filter { it.categoryId == category.id }

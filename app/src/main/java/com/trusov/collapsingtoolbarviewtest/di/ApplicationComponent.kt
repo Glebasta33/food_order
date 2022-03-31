@@ -8,6 +8,7 @@ import com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.
 import dagger.BindsInstance
 import dagger.Component
 
+@ApplicationScope
 @Component(modules = [DataModule::class, ViewModelModule::class])
 interface ApplicationComponent {
 
