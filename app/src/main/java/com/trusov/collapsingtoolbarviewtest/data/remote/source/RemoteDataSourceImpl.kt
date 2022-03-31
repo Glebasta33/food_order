@@ -1,7 +1,5 @@
 package com.trusov.collapsingtoolbarviewtest.data.remote.source
 
-import android.util.Log
-import com.trusov.collapsingtoolbarviewtest.data.remote.dto.ImageDto
 import com.trusov.collapsingtoolbarviewtest.data.remote.mapper.ShopMapper
 import com.trusov.collapsingtoolbarviewtest.data.remote.retrofit.ApiService
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
@@ -57,7 +55,7 @@ class RemoteDataSourceImpl @Inject constructor(
         if (orderedList == null) {
             orderedList = mutableListOf(item)
         } else {
-            if (item.isOrdered){
+            if (item.isOrdered) {
                 orderedList?.add(item)
             } else {
                 orderedList?.remove(item)
@@ -67,7 +65,6 @@ class RemoteDataSourceImpl @Inject constructor(
         for (i in orderedList!!) {
             listOfTitles.add(i.title)
         }
-        Log.d("OrderingTest", listOfTitles.toString())
     }
 
     override fun getListOfOrderedFoodItems(): List<FoodItem> {

@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.adapter
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.domain.entity.Category
 
-class CategoryAdapter : ListAdapter<Category, CategoryAdapter.ItemViewHolder>(CategoryDiffCallback()) {
+class CategoryAdapter :
+    ListAdapter<Category, CategoryAdapter.ItemViewHolder>(CategoryDiffCallback()) {
 
     var onCategoryItemClickListener: ((Category) -> Unit)? = null
 
@@ -19,7 +19,7 @@ class CategoryAdapter : ListAdapter<Category, CategoryAdapter.ItemViewHolder>(Ca
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val layout = when(viewType){
+        val layout = when (viewType) {
             NOT_ACTIVE_RC -> R.layout.category_not_activated_rv_item_layout
             ACTIVE_RC -> R.layout.category_activated_rv_item_layout
             else -> throw RuntimeException("Unknown viewType: $viewType")

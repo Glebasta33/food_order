@@ -10,13 +10,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="@color/grey_light">
+        android:background="@color/grey_light"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/iv_food_image"
             android:layout_width="135dp"
             android:layout_height="135dp"
+            android:contentDescription="@string/food_image"
+            android:paddingStart="0dp"
             android:paddingEnd="22dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
@@ -30,13 +32,13 @@
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"
-            android:text="Ветчина и грибы"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_food_image"
-            app:layout_constraintTop_toTopOf="@+id/iv_food_image" />
+            app:layout_constraintTop_toTopOf="@+id/iv_food_image"
+            tools:text="Ветчина и грибы" />
 
         <TextView
             android:id="@+id/tv_food_description"
@@ -44,13 +46,13 @@
             android:layout_height="0dp"
             android:ellipsize="end"
             android:maxLines="4"
-            android:text="Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус Ветчина, Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соусшампиньоны, увеличинная порция моцареллы, томатный соус"
             android:textColor="#ccc"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_food_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_food_image"
-            app:layout_constraintTop_toBottomOf="@id/tv_food_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_food_title"
+            tools:text="Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус Ветчина, Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соусшампиньоны, увеличинная порция моцареллы, томатный соус" />
 
         <TextView
             android:id="@+id/tv_food_price"
@@ -59,10 +61,10 @@
             android:background="@drawable/textview_border"
             android:paddingHorizontal="18dp"
             android:paddingVertical="8dp"
-            android:text="от 345 р"
             android:textColor="@color/pink"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="от 345 р" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

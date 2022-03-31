@@ -1,8 +1,10 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.fragment
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment.detailed_frament
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -10,19 +12,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import com.trusov.collapsingtoolbarviewtest.App
 import com.trusov.collapsingtoolbarviewtest.R
+import com.trusov.collapsingtoolbarviewtest.databinding.FragmentFoodItemDetailedBinding
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
-import com.trusov.collapsingtoolbarviewtest.presentation.view_model.FoodItemDetailedViewModel
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.ViewModelFactory
 import javax.inject.Inject
 
-class FoodItemDetailedFragment : Fragment(R.layout.fragment_food_item_detailed) {
+class FoodItemDetailedFragment : Fragment() {
 
     private lateinit var item: FoodItem
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[FoodItemDetailedViewModel::class.java]
     }
+
+    private var _binding: FragmentFoodItemDetailedBinding? = null
+    private val binding: FragmentFoodItemDetailedBinding
+        get() = _binding ?: throw RuntimeException("FragmentFoodItemDetailedBinding == null")
 
     override fun onAttach(context: Context) {
         (context.applicationContext as App).component.inject(this)
@@ -34,6 +41,15 @@ class FoodItemDetailedFragment : Fragment(R.layout.fragment_food_item_detailed) 
         arguments?.let {
             item = it.getParcelable<FoodItem>(ITEM_RC) ?: throw RuntimeException("item == null")
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentFoodItemDetailedBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,10 +71,15 @@ class FoodItemDetailedFragment : Fragment(R.layout.fragment_food_item_detailed) 
                 viewModel.orderItem(item)
             }
         }
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
+        const val NAME = "FoodItemDetailedFragment"
         private const val ITEM_RC = "item_rc"
 
         fun newInstance(item: FoodItem): FoodItemDetailedFragment {

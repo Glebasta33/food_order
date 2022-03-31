@@ -1,4 +1,4 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.adapter
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment.menu_fragment.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,8 @@ import com.squareup.picasso.Picasso
 import com.trusov.collapsingtoolbarviewtest.R
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
 
-class FoodItemAdapter : ListAdapter<FoodItem, FoodItemAdapter.ItemViewHolder>(FoodItemDiffCallback()) {
+class FoodItemAdapter :
+    ListAdapter<FoodItem, FoodItemAdapter.ItemViewHolder>(FoodItemDiffCallback()) {
 
     var onFoodItemLongClickListener: ((FoodItem) -> Unit)? = null
     var onFoodItemClickListener: ((FoodItem) -> Unit)? = null
@@ -24,7 +25,7 @@ class FoodItemAdapter : ListAdapter<FoodItem, FoodItemAdapter.ItemViewHolder>(Fo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val layout = when(viewType){
+        val layout = when (viewType) {
             NOT_ORDERED_RC -> R.layout.food_not_ordered_rv_item_layout
             ORDERED_RC -> R.layout.food_ordered_rv_item_layout
             else -> throw RuntimeException("Unknown viewType: $viewType")

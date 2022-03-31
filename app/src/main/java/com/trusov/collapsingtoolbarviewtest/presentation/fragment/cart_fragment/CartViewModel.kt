@@ -1,6 +1,5 @@
-package com.trusov.collapsingtoolbarviewtest.presentation.view_model
+package com.trusov.collapsingtoolbarviewtest.presentation.fragment.cart_fragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,10 +17,6 @@ class CartViewModel @Inject constructor(
     val listOfFoodItems: LiveData<List<FoodItem>> = _listOfFoodItems
 
     fun getListOfOrderedFoodItems() {
-        Log.d(
-            "OrderingTest",
-            "getListOfOrderedFoodItems ${getListOfOrderedFoodItemsUseCase().size}"
-        )
         _listOfFoodItems.postValue(getListOfOrderedFoodItemsUseCase())
 
     }
@@ -29,6 +24,5 @@ class CartViewModel @Inject constructor(
     fun orderItem(item: FoodItem) {
         orderFoodItemUseCase(item)
         getListOfOrderedFoodItems()
-        Log.d("OrderingTest", "orderItem")
     }
 }

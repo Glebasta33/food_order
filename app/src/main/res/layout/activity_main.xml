@@ -21,8 +21,9 @@
             android:id="@+id/spinner_cities"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:paddingEnd="24dp"
             android:background="@android:color/transparent"
+            android:paddingStart="0dp"
+            android:paddingEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,9 +32,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_dropdown"
-            app:layout_constraintEnd_toEndOf="@id/spinner_cities"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toEndOf="@id/spinner_cities"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/spinner_dropdown_icon" />
 
         <ImageView
             android:id="@+id/iv_qr_code"
@@ -42,7 +44,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_qr_code" />
+            app:srcCompat="@drawable/ic_qr_code"
+            android:contentDescription="@string/qr_code_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
