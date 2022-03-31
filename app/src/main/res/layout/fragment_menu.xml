@@ -26,9 +26,9 @@
                 android:id="@+id/rv_sales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="6dp"
                 android:background="@color/white"
                 android:clipToPadding="false"
+                android:paddingHorizontal="6dp"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
 
@@ -36,11 +36,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_tags"
-            android:background="@color/white"
-            android:paddingHorizontal="12dp"
-            android:clipToPadding="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clipToPadding="false"
+            android:paddingHorizontal="12dp" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
