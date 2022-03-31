@@ -13,7 +13,7 @@ import com.trusov.collapsingtoolbarviewtest.presentation.fragment.FoodItemDetail
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.MenuFragment
 import com.trusov.collapsingtoolbarviewtest.presentation.fragment.ProfileFragment
 
-class MainActivity : AppCompatActivity(), MenuFragment.NavigationHelper {
+class MainActivity : AppCompatActivity(), NavigationController {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

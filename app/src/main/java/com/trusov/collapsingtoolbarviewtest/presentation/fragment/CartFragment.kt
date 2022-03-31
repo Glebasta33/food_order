@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.trusov.collapsingtoolbarviewtest.App
 import com.trusov.collapsingtoolbarviewtest.R
+import com.trusov.collapsingtoolbarviewtest.presentation.activity.NavigationController
 import com.trusov.collapsingtoolbarviewtest.presentation.adapter.FoodItemAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.CartViewModel
 import com.trusov.collapsingtoolbarviewtest.presentation.view_model.ViewModelFactory
@@ -20,10 +21,14 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[CartViewModel::class.java]
     }
+    private lateinit var navController: NavigationController
 
     override fun onAttach(context: Context) {
         (context.applicationContext as App).component.inject(this)
         super.onAttach(context)
+        if (context is NavigationController) {
+            navController = context
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,6 +39,9 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
                 submitList(it)
                 onFoodItemLongClickListener = {
                     viewModel.orderItem(it)
+                }
+                onFoodItemClickListener = {
+                    navController.launchFoodItemDetailedFragment(it)
                 }
             }
         }

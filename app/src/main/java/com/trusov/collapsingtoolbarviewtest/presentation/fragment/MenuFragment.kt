@@ -3,13 +3,13 @@ package com.trusov.collapsingtoolbarviewtest.presentation.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.trusov.collapsingtoolbarviewtest.*
 import com.trusov.collapsingtoolbarviewtest.domain.entity.FoodItem
+import com.trusov.collapsingtoolbarviewtest.presentation.activity.NavigationController
 import com.trusov.collapsingtoolbarviewtest.presentation.adapter.FoodItemAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.adapter.RvAdapter
 import com.trusov.collapsingtoolbarviewtest.presentation.adapter.CategoryAdapter
@@ -24,13 +24,13 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[MenuViewModel::class.java]
     }
-    private lateinit var navigationHelper: NavigationHelper
+    private lateinit var navController: NavigationController
 
     override fun onAttach(context: Context) {
         (context.applicationContext as App).component.inject(this)
         super.onAttach(context)
-        if (context is NavigationHelper) {
-            navigationHelper = context
+        if (context is NavigationController) {
+            navController = context
         }
     }
 
@@ -62,7 +62,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                     viewModel.orderItem(it)
                 }
                 onFoodItemClickListener = {
-                    navigationHelper.launchFoodItemDetailedFragment(it)
+                    navController.launchFoodItemDetailedFragment(it)
                 }
             }
         }
@@ -79,10 +79,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 }
             }
         }
-    }
-
-    interface NavigationHelper {
-        fun launchFoodItemDetailedFragment(item: FoodItem)
     }
 
 }
