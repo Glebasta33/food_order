@@ -1,6 +1,5 @@
-# food_order
 
-The application is a test task for Hummer Systems company. This app is an example of the interface of a typical food ordering app.
+The application is a test task for Hummer Systems company. This app is an example of UI of a typical food ordering app.
 
 Technologies: Coroutines, Retrofit 2, Room, Picasso, MVVM, Dagger, Clean Architecture, XML.
 
