@@ -6,4 +6,4 @@ Technologies: Coroutines, Retrofit 2, Room, Picasso, MVVM, Dagger, Clean Archite
 
 | Sorting and ordering      | Using Collapsing Toolbar   |
 | ----------|-----------|
-| <img src="https://github.com/Glebasta33/CryptoReview/blob/master/app/src/main/res/drawable/screen1.gif"/> | <img src="https://github.com/Glebasta33/CryptoReview/blob/master/app/src/main/res/drawable/screen2.gif"/> |
+| <img src="https://github.com/Glebasta33/food_order/blob/master/app/src/main/res/drawable-anydpi/screen1.gif"/> | <img src="https://github.com/Glebasta33/food_order/blob/master/app/src/main/res/drawable-anydpi/screen2.gif"/> |
